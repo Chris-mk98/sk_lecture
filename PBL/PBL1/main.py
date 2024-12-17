@@ -31,20 +31,20 @@ class StudentScores:
             print(f"파일 쓰기 오류: {e}")
     
     def result_print(self):
-        return f"""
+        print(f"""
 
 ----------------------------------------------------------------
 
 평균 점수: {self.mean_score():.2f}
 
-평균 이상을 받은 학생들: {', '.join(self.high_score())}
+평균 이상을 받은 학생들: {'['+', '.join(self.high_score())+']'}
 
 ----------------------------------------------------------------
-"""
+""")
 
 # 실행 코드
 if __name__ == '__main__':
     Test = StudentScores()
     Test.get_data('scores_korean.txt')  # 파일 이름
     Test.low_score()  # 평균 이하 학생 파일 저장
-    print(Test.result_print())  # 결과 출력
+    Test.result_print()  # 결과 출력
