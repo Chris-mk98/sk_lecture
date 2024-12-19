@@ -10,7 +10,7 @@ class LogData():
     def extract_ips(self):
         try:
             with open(self.filepath, 'r') as file:
-                log_content = file.read()
+                log_content = file.readline()
                 ip_pattern = r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}'
                 self.ips = re.findall(ip_pattern, log_content)
         except Exception as e:
