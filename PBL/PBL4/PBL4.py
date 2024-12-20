@@ -21,7 +21,7 @@ class Sales_data:
 
     
     def visualize(self): 
-        self.pivot = pd.pivot_table(self.df, values='Sales', index='Month', aggfunc='sum')
+        self.pivot = pd.pivot_table(self.df, values='Sales', index='Month', aggfunc='sum').reset_index()
 
         plt.plot([i for i in range(1,13)], self.pivot['Sales'], marker = 'o')
 
