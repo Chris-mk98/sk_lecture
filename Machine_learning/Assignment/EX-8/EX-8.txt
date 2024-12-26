@@ -1,0 +1,62 @@
+# 문제: "주택 가격 예측 모델 구축하기"
+
+# 문제 주제:
+# 캐글의 유명한 House Prices - Advanced Regression Techniques 데이터를 기반으로 주택의 판매 가격을 예측하는 간단한 지도학습 모델을 학습하고 평가합니다.
+# 주어진 데이터를 전처리하고, Decision Tree Regressor를 이용하여 주택 가격을 예측하세요.
+
+
+# 내용
+# 주어진 주택 데이터를 기반으로 주택의 판매 가격(SalePrice)을 예측하는 모델을 구축합니다.
+# 전처리 과정에서 결측값 처리와 범주형 데이터 인코딩을 수행합니다.
+
+ - 주요 요구사항
+#   - 데이터를 읽어오고, 주요 정보를 확인하세요.v
+#   - 아래의 전처리 작업을 수행하세요:v
+#   - 결측값 처리: 결측값이 많은 열은 삭제하고, LotFrontage는 평균값으로 대체하세요.
+#   - 범주형 데이터 처리: pd.get_dummies를 이용하여 범주형 데이터를 숫자로 변환하세요.
+#   - 불필요한 열 제거: Id 열은 제거하세요.
+#   - 학습 데이터와 테스트 데이터를 나누세요. (훈련:테스트 비율 = 8:2)
+#   - Decision Tree Regressor를 사용하여 모델을 학습하고 예측하세요.
+  - 테스트 데이터에서 모델의 평균 절대 오차(MAE)를 계산하세요.
+
+# 문제 가이드
+#  - 데이터 전처리
+#   - 결측값 처리, 범주형 변수 인코딩, 불필요한 열 제거는 필수입니다.
+#  - 모델 학습 및 평가
+#   - 학습 데이터를 Decision Tree Regressor로 학습하고, 테스트 데이터로 평가합니다.
+
+Id => 제거
+LotFrontage       259 => 평균값 대체체
+Alley            1369 => 제거
+MasVnrType        872 => 제거
+FireplaceQu       690 => 제거
+PoolQC           1453 => 제거
+Fence            1179 => 제거
+MiscFeature      1406 => 제거
+
+
+dummy_na = True
+# 지하실 : dummy_na = True
+BsmtQual           37 => 최빈값
+BsmtCond           37 => 최빈값
+BsmtExposure       38 => 최빈값
+BsmtFinType1       37 => 최빈값
+BsmtFinType2       38 => 최빈값
+차고지 => 차고지가 없는 것 =>
+GarageType         81 
+GarageYrBlt        81 
+GarageFinish       81 
+GarageQual         81 
+GarageCond         81 
+
+
+
+#범주형 데이터
+category_data = ['MSSubClass', 'Street', 'LotShape', 'LandContour', 'Utilities', 'LotConfig', 'LandSlope', 'Neighborhood', 'Condition1', 'Condition2', 'BldgType','HouseStyle',
+'RoofStyle', 'RoofMatl', 'Exterior1st', 'Exterior2nd', 'ExterQual', 'ExterCond', 'Foundation', 'BsmtQual', 'BsmtCond', 'BsmtExposure', 'BsmtFinType1', 'BsmtFinType2', 'Heating',
+'HeatingQC', 'CentralAir', 'Electrical', 'KitchenQual', 'Functional', 'GarageType', 'GarageFinish', 'GarageQual', 'GarageCond', 'PavedDrive', 'SaleType', 'SaleCondition']
+numerical_data = ['LotFrontage', 'LotArea', 'OverallQual', 'OverallCond', 'YearBuilt', 'YearRemodAdd', 'BsmtFinSF1', 'BsmtFinSF2', 'BsmtUnfSF', 'TotalBsmtSF', '1stFlrSF', '2ndFlrSF',
+'LowQualFinSF', 'GrLivArea', 'BsmtFullBath', 'BsmtHalfBath', 'FullBath', 'HalfBath', 'BedroomAbvGr', 'KitchenAbvGr', 'TotRmsAbvGrd', 'Fireplaces', 'GarageYrBlt', 'GarageCars', 'GarageArea',
+'WoodDeckSF', 'OpenPorchSF', 'EnclosedPorch', '3SsnPorch', 'ScreenPorch', 'PoolArea', 'MiscVal', 'MoSold', 'YrSold']
+delete_data = ['Id', 'Alley', 'FireplaceQu', 'PoolQC', 'Fence', 'MiscFeature', 'MasVnrType']
+
